@@ -1,0 +1,11 @@
+Arne Karila, kielten kandiohjelma (englanti)
+
+Documentation language: English
+
+Project language: Java
+
+# The Project
+
+* The goal of this project is to implement and compare three pathfinding algorithms: Dijkstra's algorithm, A* and IDA*
+
+* These algorithms will be compared by having them solve increasingly large and complicated mazes to determine how various factors affect the efficiency of each algorithm

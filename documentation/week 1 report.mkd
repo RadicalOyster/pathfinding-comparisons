@@ -1,0 +1,5 @@
+# Week 1 Report
+
+This week I was entirely focused on researching various options and deciding the topic. Initially I had considered something involving a simple neural network or attempting to implement a compression algorithm, but I eventually settled on pathfinding algorithms to reinforce rather than trying something entirely new to me as I have struggled with pathfinding before and would like to become more confident in implementing these algorithms.
+
+I have yet to start the actual coding, but I intend to first implement Dijkstra's algorithm and A*, as Dijkstra's I am already familiar with and A* is a variation of it. This will lay the groundwork for implementing features to compare and visualize these algorithms, and once I have layed the groundwork I will then implement IDA*.  
