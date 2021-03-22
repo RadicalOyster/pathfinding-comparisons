@@ -1,11 +1,8 @@
-Arne Karila, kielten kandiohjelma (englanti)
+# About
 
-Documentation language: English
+This project aims to implement and compare the efficiency various pathfinding algorithms in determining the shortest path in a 2-dimensional maze.
 
-Project language: Java
+# Documentation
 
-# The Project
-
-* The goal of this project is to implement and compare three pathfinding algorithms: Dijkstra's algorithm, A* and IDA*
-
-* These algorithms will be compared by having them solve increasingly large and complicated mazes to determine how various factors affect the efficiency of each algorithm
+[Project outline]()
+[Weekly reports]()

@@ -1,0 +1,26 @@
+Arne Karila, kielten kandiohjelma (englanti)
+
+Documentation language: English
+
+Project language: Java
+
+# The Project
+
+* The goal of this project is to implement and compare three pathfinding algorithms: Dijkstra's algorithm, A* and IDA*
+
+* I have chosen these three algorithms for ease of implementation and the common points between them. Dijkstra will serve as the base line for comparison. A* is structurally very similar, but uses a heuristic function to optimize the process of finding the shortest path. IDA* is different from the other two algorithms in that it uses a tree to find the shortest path, but shares the idea of optimizing the search using a hueristic function with A*.
+
+* These algorithms will be compared by having them solve increasingly large and complicated mazes to determine how various factors affect the efficiency of each algorithm
+
+* The mazes will consist of a weighted graph representedbby a 2-dimensional array.
+
+# Time and space complexity
+
+* Using a priority queue, Dijkstra's algorithm should run at a time complexity of O(V + E logV) where V = the number of vertices and E = the number of edges in the graph
+* The space complexity of Dijkstra's algorithm is O(V) where V = the number of vertices
+
+* With A*, the goal is to reach a time complexity of O(E) where E = the number of edges
+* The space complexity should be no worse than Dijkstra's. The goal is a space complexity of O(V)
+
+* The time complexity of IDA* is difficult to evaluate, but it should prove to be about as efficient as A*
+* The space complexity for IDA* is O(bd) where b is the maximum branching factor (number of child nodes each node can have) and d is the maximum depth of the tree.
