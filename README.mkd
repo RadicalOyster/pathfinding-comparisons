@@ -4,9 +4,10 @@ This project aims to implement and compare the efficiency various pathfinding al
 
 # Documentation
 
-[Project outline]()
-[Weekly reports]()
-=======
+* [Project outline]()
+
+* [Weekly reports]()
+
 # The Project
 
 * The goal of this project is to implement and compare three pathfinding algorithms: Dijkstra's algorithm, A* and IDA*
