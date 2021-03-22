@@ -1,8 +1,0 @@
-# About
-
-This project aims to implement and compare the efficiency various pathfinding algorithms in determining the shortest path in a 2-dimensional maze.
-
-# Documentation
-
-[Project outline]()
-[Weekly reports]()

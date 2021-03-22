@@ -1,0 +1,16 @@
+# About
+
+This project aims to implement and compare the efficiency various pathfinding algorithms in determining the shortest path in a 2-dimensional maze.
+
+# Documentation
+
+<<<<<<< HEAD:readme.mkd
+[Project outline]()
+[Weekly reports]()
+=======
+# The Project
+
+* The goal of this project is to implement and compare three pathfinding algorithms: Dijkstra's algorithm, A* and IDA*
+
+* These algorithms will be compared by having them solve increasingly large and complicated mazes to determine how various factors affect the efficiency of each algorithm
+>>>>>>> 4c73cff67324ba3194a3e42bc789ed0c1ed221e9:README.mkd
