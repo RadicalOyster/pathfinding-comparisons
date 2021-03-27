@@ -1,0 +1,183 @@
+package main;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.PriorityQueue;
+
+/**
+ * <h1>Dijkstra's Algorithm</h1>
+ * An implementation of Dijkstra's algorithm to find the shortest path in a maze
+ * represented by a 2-dimensional array. Each point in the array represents the
+ * cost of moving to that node with walls being marked as Integer.MAX_VALUE.
+ */
+public class Dijkstra {
+
+    PriorityQueue<Node> queue;
+    int[][] maze;
+    boolean[][] visited;
+    int[][] distance;
+    boolean pathFound;
+    ArrayList<Node> path;
+
+    Dijkstra(int[][] maze) {
+        this.maze = maze;
+        this.Initialize();
+    }
+
+    private void Initialize() {
+        this.visited = new boolean[maze.length][maze[0].length];
+        this.distance = new int[maze.length][maze[0].length];
+        this.path = new ArrayList<>();
+
+        for (int i = 0; i < maze.length; i++) {
+            for (int j = 0; j < maze[0].length; j++) {
+                this.distance[i][j] = Integer.MAX_VALUE;
+            }
+        }
+
+        this.pathFound = false;
+        this.queue = new PriorityQueue();
+    }
+
+    private boolean IsValid(Node node) {
+        return (node.getY() >= 0 && node.getY() < maze.length) && (node.getX() >= 0 && node.getX() < maze[0].length);
+    }
+
+    private void Traverse(Node node, Node destination) {
+        for (int i = 0; i < 4; i++) {
+            Node newNode = new Node(node.getX(), node.getY(), 0);
+
+            switch (i) {
+                case 0:
+                    newNode.setX(newNode.getX() + 1);
+                    break;
+                case 1:
+                    newNode.setX(newNode.getX() - 1);
+                    break;
+                case 2:
+                    newNode.setY(newNode.getY() + 1);
+                    break;
+                default:
+                    newNode.setY(newNode.getY() - 1);
+                    break;
+            }
+
+            if (!(IsValid(newNode)) || this.visited[newNode.getY()][newNode.getX()]) {
+                continue;
+            }
+
+            if (this.maze[newNode.getY()][newNode.getX()] == Integer.MAX_VALUE) {
+                continue;
+            }
+
+            int distance_to_node = this.distance[node.getY()][node.getX()] + this.maze[newNode.getY()][newNode.getX()];
+            newNode.setPrevious(node);
+
+            newNode.setPriority(distance_to_node);
+            this.queue.add(newNode);
+            this.distance[newNode.getY()][newNode.getX()] = distance_to_node;
+            this.visited[newNode.getY()][newNode.getX()] = true;
+
+            if (newNode.getX() == destination.getX() && newNode.getY() == destination.getY()) {
+                this.pathFound = true;
+                destination.setPrevious(node);
+                break;
+            }
+        }
+    }
+
+    /**
+     * Run the algorithm to calculate the shortest path between the start point
+     * destination.
+     *
+     * @param start The start node.
+     * @param destination The destination node.
+     */
+    public void FindPath(Node start, Node destination) {
+        if (!IsValid(start) || !IsValid(destination)) {
+            System.out.println("No path found");
+            return;
+        }
+
+        Initialize();
+        this.distance[start.getX()][start.getY()] = 0;
+        this.visited[start.getX()][start.getY()] = true;
+        this.queue.add(start);
+
+        while (!(this.pathFound) && queue.size() > 0) {
+            Node head = queue.poll();
+            Traverse(head, destination);
+        }
+
+        if (this.pathFound) {
+            Node currentNode = destination;
+            this.path = new ArrayList<>();
+            while (true) {
+                this.path.add(currentNode);
+                if (currentNode.getX() == start.getX() && currentNode.getY() == start.getY()) {
+                    break;
+                }
+                currentNode = currentNode.getPrevious();
+            }
+            Collections.reverse(this.path);
+        } else {
+            System.out.println("No path found");
+        }
+    }
+
+    /**
+     * Returns the last calculated path.
+     *
+     * @return The current path.
+     */
+    public ArrayList<Node> GetPath() {
+        return this.path;
+    }
+
+    /**
+     * Converts the maze into a simplified form to help visualize the shortest
+     * path.
+     *
+     * @return A 2-dimensional array of type char. 'X' represents a wall, 'S'
+     * represents the starting node, 'G' the destination node and '*' a node on
+     * the path.
+     */
+    public char[][] VisualizePath() {
+        char[][] visualization = new char[this.maze.length][this.maze[0].length];
+
+        for (int i = 0; i < maze.length; i++) {
+            for (int j = 0; j < maze[0].length; j++) {
+                char character = '-';
+                if (this.maze[i][j] == Integer.MAX_VALUE) {
+                    character = 'X';
+                }
+                visualization[i][j] = character;
+            }
+        }
+
+        if (this.path.size() > 0) {
+            this.path.forEach((node) -> {
+                visualization[node.getY()][node.getX()] = '*';
+            });
+
+            visualization[this.path.get(0).getY()][this.path.get(0).getX()] = 'S';
+            visualization[this.path.get(this.path.size() - 1).getY()][this.path.get(this.path.size() - 1).getX()] = 'G';
+        }
+
+        return visualization;
+    }
+
+    /**
+     * Prints a visualization of the shortest path.
+     */
+    public void PrintVisualization() {
+        char[][] mazeMap = VisualizePath();
+
+        for (char[] row : mazeMap) {
+            for (int i = 0; i < mazeMap[0].length; i++) {
+                System.out.print(row[i] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
