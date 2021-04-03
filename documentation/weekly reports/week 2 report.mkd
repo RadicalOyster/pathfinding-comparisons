@@ -1,0 +1,3 @@
+# Week 2 Report
+
+This week I began implementing pathfinding algorithms, starting with Dijkstra's algorithm. There were some problems in my implementation that ate up a significant amount of work hours spent on troubleshooting and bug fixing. Additionally, I added a simple function to visualize the path selected by the algorithm. I also created test for both the Dijkstra class and the Node class that my implementation of the algorithm utilizes.

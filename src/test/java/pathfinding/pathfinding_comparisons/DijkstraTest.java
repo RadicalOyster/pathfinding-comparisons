@@ -1,0 +1,193 @@
+package pathfinding.pathfinding_comparisons;
+
+import java.util.ArrayList;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+/**
+ *
+ * @author Arne
+ */
+public class DijkstraTest {
+    
+    /**
+     *
+     */
+    public DijkstraTest() {
+
+    }
+    
+    /**
+     *
+     */
+    @BeforeClass
+    public static void setUpClass() {
+    }
+    
+    /**
+     *
+     */
+    @AfterClass
+    public static void tearDownClass() {
+    }
+    
+    /**
+     *
+     */
+    @Before
+    public void setUp() {
+    }
+    
+    /**
+     *
+     */
+    @After
+    public void tearDown() {
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void InitializedCorrectly() {
+        int W = Integer.MAX_VALUE;
+        int[][] maze =
+        {
+        {W,W,1,W,1,1,1,1},
+        {1,1,W,1,1,W,W,1},
+        {1,1,1,W,W,W,1,1},
+        {W,W,1,W,1,1,1,1},
+        {1,W,1,W,1,1,W,1},
+        {1,W,1,1,W,1,1,W},
+        {1,1,1,W,W,W,1,1},
+        {1,W,1,1,W,1,1,1},
+        {1,W,1,1,1,1,1,1},
+        };
+        
+        Dijkstra dijkstra = new Dijkstra(maze);
+        assertArrayEquals(dijkstra.maze, maze);
+        assertEquals(maze.length,dijkstra.distance.length);
+        assertEquals(maze.length,dijkstra.visited.length);
+        assertEquals(0,dijkstra.GetPath().size());
+        assertEquals(0,dijkstra.queue.size());
+    }
+    
+    /**
+     *
+     */
+    @Test
+    public void PathFoundIsValid() {
+        int W = Integer.MAX_VALUE;
+        int[][] maze =
+        {
+        {W,W,1,W,1,1,1,1},
+        {1,1,W,1,1,W,W,1},
+        {1,1,1,W,W,W,1,1},
+        {W,W,1,W,1,1,1,1},
+        {1,W,1,W,1,1,W,1},
+        {1,W,1,1,W,1,1,W},
+        {1,1,1,W,W,W,1,1},
+        {1,W,1,1,W,1,1,1},
+        {1,W,1,1,1,1,1,1},
+        };
+        
+        Dijkstra dijkstra = new Dijkstra(maze);
+        
+        Node start = new Node(0,1);
+        Node destination = new Node(7,5);
+        
+        dijkstra.FindPath(start, destination);
+        ArrayList<Node> path = dijkstra.GetPath();
+        path.forEach((node) -> {
+            assertEquals(true, dijkstra.IsValid(node));
+        });
+    }
+    
+    /**
+     *
+     */
+    @Test
+    public void SearchingNewPathWorks() {
+        int W = Integer.MAX_VALUE;
+        int[][] maze =
+        {
+        {1,1,1,W,1},
+        {W,W,1,W,1},
+        {W,W,1,1,1},
+        {1,W,1,W,1},
+        {1,1,1,W,1}
+        };
+        
+        Dijkstra dijkstra = new Dijkstra(maze);
+        
+        Node start = new Node(2,2);
+        Node destination = new Node(0,3);
+        
+        dijkstra.FindPath(start, destination);
+        ArrayList<Node> path = dijkstra.GetPath();
+        
+        ArrayList<Node> correctPath = new ArrayList<>();
+        correctPath.add(new Node(2,2));
+        correctPath.add(new Node(2,3));
+        correctPath.add(new Node(2,4));
+        correctPath.add(new Node(1,4));
+        correctPath.add(new Node(0,4));
+        correctPath.add(new Node(0,3));
+        
+        assertEquals(correctPath.size(), path.size());
+        
+        for (int i = 0; i < correctPath.size(); i++) {
+            assertEquals(correctPath.get(i).getX(), path.get(i).getX());
+            assertEquals(correctPath.get(i).getY(), path.get(i).getY());
+        }
+        
+        start = new Node(0,3);
+        destination = new Node(4,0);
+        
+        dijkstra.FindPath(start, destination);
+        path = dijkstra.GetPath();
+        
+        correctPath = new ArrayList<>();
+        correctPath.add(new Node(0,3));
+        correctPath.add(new Node(0,4));
+        correctPath.add(new Node(1,4));
+        correctPath.add(new Node(2,4));
+        correctPath.add(new Node(2,3));
+        correctPath.add(new Node(2,2));
+        correctPath.add(new Node(3,2));
+        correctPath.add(new Node(4,2));
+        correctPath.add(new Node(4,1));
+        correctPath.add(new Node(4,0));
+        
+        assertEquals(correctPath.size(), path.size());
+        
+        for (int i = 0; i < correctPath.size(); i++) {
+            assertEquals(correctPath.get(i).getX(), path.get(i).getX());
+            assertEquals(correctPath.get(i).getY(), path.get(i).getY());
+        }
+    }
+    
+    /**
+     *
+     */
+    @Test
+    public void PathFoundIsShortest() {
+        int[][] maze =
+        {
+        {1,10,1},
+        {1,10,1},
+        {1,1,1}
+        };
+        
+        Dijkstra dijkstra = new Dijkstra(maze);
+        Node start = new Node(0,0);
+        Node destination = new Node(2,0);
+        dijkstra.FindPath(start, destination);
+        
+        assertEquals(6, dijkstra.LengthOfPath());
+    }
+}
