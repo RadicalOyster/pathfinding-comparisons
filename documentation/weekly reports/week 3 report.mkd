@@ -1,0 +1,3 @@
+# Week 3 Report
+
+This week I implemented the A* algorithm and began work on my implementation of IDA*. Most of this week's work has gone into research and IDA* has not yet been fully implemented. Unit tests have been added for my node and Dijkstra classes, save for the new Equals and Hashcode methods that have been implemented for use with the IDA* algorithm.

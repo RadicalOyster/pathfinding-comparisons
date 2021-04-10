@@ -5,13 +5,13 @@ import java.util.Collections;
 import java.util.PriorityQueue;
 
 /**
- * <h1>Dijkstra's Algorithm</h1>
- * An implementation of Dijkstra's algorithm to find the shortest path in a maze
- * represented by a 2-dimensional array. Each point in the array represents the
- * cost of moving to that node with walls being marked as Integer.MAX_VALUE.
+ * <h1>A* Algorithm</h1>
+ * An implementation of the A* algorithm to find the shortest path in a maze
+ * represented by a 2-dimensional array. Mostly the same as Dijkstra, but
+ * uses a heuristic function to more efficiently find the path. 
  */
-public class Dijkstra {
 
+public class A_star {
     PriorityQueue<Node> queue;
     int[][] maze;
     boolean[][] visited;
@@ -19,7 +19,7 @@ public class Dijkstra {
     boolean pathFound;
     ArrayList<Node> path;
 
-    Dijkstra(int[][] maze) {
+    A_star(int[][] maze) {
         this.maze = maze;
         this.Initialize();
     }
@@ -46,7 +46,18 @@ public class Dijkstra {
      * @return Returns true if node is in bounds, false if not.
      */
     public boolean IsValid(Node node) {
-        return (node.getY() >= 0 && node.getY() < maze.length) && (node.getX() >= 0 && node.getX() < maze[0].length);
+        return (node.getY() >= 0 && node.getY() < this.maze.length) && (node.getX() >= 0 && node.getX() < this.maze[0].length);
+    }
+    
+    /**
+     * Calculates the Manhattan distance between two nodes.
+     *
+     * @param node1 The first node
+     * @param node2 The second node
+     * @return The distance between node1 and node2
+     */
+    public int ManhattanDistance(Node node1, Node node2) {
+        return Math.abs(node1.getX() - node2.getX()) + Math.abs(node1.getY() - node2.getY());
     }
 
     private void Traverse(Node node, Node destination) {
@@ -81,7 +92,7 @@ public class Dijkstra {
 
             newNode.setPriority(distance_to_node);
             this.queue.add(newNode);
-            this.distance[newNode.getY()][newNode.getX()] = distance_to_node;
+            this.distance[newNode.getY()][newNode.getX()] = distance_to_node + this.ManhattanDistance(node, destination);
             this.visited[newNode.getY()][newNode.getX()] = true;
 
             if (newNode.getX() == destination.getX() && newNode.getY() == destination.getY()) {
@@ -104,6 +115,7 @@ public class Dijkstra {
             System.out.println("No path found");
             return;
         }
+        
         //Reset everything to the initial state
         Initialize();
         this.distance[start.getX()][start.getY()] = 0;

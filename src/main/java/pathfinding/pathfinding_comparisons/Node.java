@@ -1,5 +1,7 @@
 package pathfinding.pathfinding_comparisons;
 
+import java.util.Objects;
+
 /**
  * <h1>Node</h1>
  * A class representing a point in a 2-dimensional array.
@@ -9,8 +11,8 @@ package pathfinding.pathfinding_comparisons;
  * path by finding the previous node on the path.
  */
 public class Node implements Comparable<Node> {
-    int x;
-    int y;
+    Integer x;
+    Integer y;
     int priority;
     Node previous;
     
@@ -72,7 +74,7 @@ public class Node implements Comparable<Node> {
     }
 
      /**
-     * @return The node preceeding this node on the path.
+     * @return The node preceding this node on the path.
      */   
     public Node getPrevious() {
         return this.previous;
@@ -80,7 +82,7 @@ public class Node implements Comparable<Node> {
 
      /**
      * Set the node's previous node.
-     * @param node The node preceeding this node on the path.
+     * @param node The node preceding this node on the path.
      */    
     public void setPrevious(Node node) {
         this.previous = node;
@@ -104,5 +106,33 @@ public class Node implements Comparable<Node> {
         return "(" + this.x + "," + this.y + ")"; 
     }
     
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || o.getClass() != getClass()) {
+            return false;
+        }
+        else {
+            Node node = (Node) o;
+            if (this.x == node.getX() && this.y == node.getY()) {
+                return true;
+            }
+        }
+        return false;
+    }
     
+    public boolean equals(Node node) {
+        if (node.getX() == this.x && node.getY() == this.y) {
+            return true;
+        }
+        
+        return false;
+    }
+    
+    @Override
+    public int hashCode() {
+        int result = 3;
+        result = 7 * result + this.x.hashCode();
+        result = 7 * result + this.y.hashCode();
+        return result;
+    }
 }
