@@ -3,7 +3,6 @@ package pathfinding.pathfinding_comparisons;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
-import static java.util.Objects.isNull;
 import java.util.PriorityQueue;
 
 /**
@@ -15,10 +14,10 @@ import java.util.PriorityQueue;
 
 public class IDA_star {
 
-    private final int[][] maze;
-    private int[][] distance;
+    final int[][] maze;
+    int[][] distance;
     private boolean pathFound;
-    private ArrayDeque<Node> path;
+    ArrayDeque<Node> path;
     private ArrayList<Node> finalPath;
 
     /**
@@ -28,6 +27,7 @@ public class IDA_star {
      */
     public IDA_star(int[][] maze) {
         this.maze = maze;
+        this.Initialize();
     }
     
     //Initialize data structures
@@ -224,5 +224,23 @@ public class IDA_star {
             }
             System.out.println();
         }
+    }
+    
+        /**
+     * Gets the length of the path, required for unit testing
+     *
+     * @return Length of the current path
+     */
+    public int LengthOfPath() {
+        if (this.finalPath.size() <= 0) {
+            return -1;
+        }
+
+        int length = 0;
+        for (int i = 1; i < this.finalPath.size(); i++) {
+            length += this.maze[this.finalPath.get(i).getY()][this.finalPath.get(i).getX()];
+        }
+
+        return length;
     }
 }

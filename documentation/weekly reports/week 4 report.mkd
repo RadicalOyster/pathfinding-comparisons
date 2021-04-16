@@ -1,0 +1,3 @@
+# Week 4 Report
+
+This week I fixed a major bug with my A* implementation and finished implementing IDA*. I also added tests for A* and IDA* and generated a coverage report for my current tests. Unfortunately, bug fixing took up too mcuh time for me to begin working on replacing Java's default data structures with my own implementations.

@@ -8,7 +8,8 @@ Project language: Java
 
 * The goal of this project is to implement and compare three pathfinding algorithms: Dijkstra's algorithm, A* and IDA*
 
-* I have chosen these three algorithms for ease of implementation and the common points between them. Dijkstra will serve as the base line for comparison. A* is structurally very similar, but uses a heuristic function to optimize the process of finding the shortest path. IDA* is different from the other two algorithms in that it uses a tree to find the shortest path, but shares the idea of optimizing the search using a hueristic function with A*.
+* I have chosen these three algorithms for ease of implementation and the common points between them. Dijkstra will serve as the base line for comparison. A* is structurally very similar, but uses a heuristic function to optimize the process of finding the shortest path. IDA* is more space efficient as it does not keep track of visisted nodes. However, this also means it may visit the same node several times unlike A*
+and Dijkstra's algorithm, which will both only visit any given node once.
 
 * These algorithms will be compared by having them solve increasingly large and complicated mazes to determine how various factors affect the efficiency of each algorithm
 
@@ -23,4 +24,4 @@ Project language: Java
 * The space complexity should be no worse than Dijkstra's. The goal is a space complexity of O(V)
 
 * The time complexity of IDA* is difficult to evaluate, but it should prove to be about as efficient as A*
-* The space complexity for IDA* is O(bd) where b is the maximum branching factor (number of child nodes each node can have) and d is the maximum depth of the tree.
+* The space complexity for IDA* is O(bd) where b is the maximum branching factor (number of child nodes each node can have) and d is the maximum depth of the search tree.
