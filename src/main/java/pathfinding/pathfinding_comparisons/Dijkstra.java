@@ -19,7 +19,12 @@ public class Dijkstra {
     boolean pathFound;
     ArrayList<Node> path;
 
-    Dijkstra(int[][] maze) {
+    /**
+     *
+     * @param maze The maze to solve. The cost of moving to a node is represented
+     * by an int value with walls being marked as Integer.MAX_VALUE
+     */
+    public Dijkstra(int[][] maze) {
         this.maze = maze;
         this.Initialize();
     }
@@ -46,7 +51,7 @@ public class Dijkstra {
      * @return Returns true if node is in bounds, false if not.
      */
     public boolean IsValid(Node node) {
-        return (node.getY() >= 0 && node.getY() < maze.length) && (node.getX() >= 0 && node.getX() < maze[0].length);
+        return (node.getY() >= 0 && node.getY() < this.maze.length) && (node.getX() >= 0 && node.getX() < this.maze[0].length);
     }
 
     private void Traverse(Node node, Node destination) {
@@ -98,11 +103,11 @@ public class Dijkstra {
      *
      * @param start The start node.
      * @param destination The destination node.
+     * @return 
      */
-    public void FindPath(Node start, Node destination) {
+    public boolean FindPath(Node start, Node destination) {
         if (!IsValid(start) || !IsValid(destination)) {
-            System.out.println("No path found");
-            return;
+            return false;
         }
         //Reset everything to the initial state
         Initialize();
@@ -129,8 +134,9 @@ public class Dijkstra {
                 currentNode = currentNode.getPrevious();
             }
             Collections.reverse(this.path);
+            return true;
         } else {
-            System.out.println("No path found");
+            return false;
         }
     }
 
@@ -151,7 +157,7 @@ public class Dijkstra {
      * represents the starting node, 'G' the destination node and '*' a node on
      * the path.
      */
-    public char[][] VisualizePath() {
+    public char[][] GetVisualization() {
         char[][] visualization = new char[this.maze.length][this.maze[0].length];
 
         for (int i = 0; i < maze.length; i++) {
@@ -180,10 +186,10 @@ public class Dijkstra {
      * Prints a visualization of the shortest path.
      */
     public void PrintVisualization() {
-        char[][] mazeMap = VisualizePath();
+        char[][] visualization = GetVisualization();
 
-        for (char[] row : mazeMap) {
-            for (int i = 0; i < mazeMap[0].length; i++) {
+        for (char[] row : visualization) {
+            for (int i = 0; i < visualization[0].length; i++) {
                 System.out.print(row[i] + " ");
             }
             System.out.println();

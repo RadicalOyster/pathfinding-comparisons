@@ -19,14 +19,19 @@ public class A_star {
     boolean pathFound;
     ArrayList<Node> path;
 
-    A_star(int[][] maze) {
+    /**
+     *
+     * @param maze The maze to solve. The cost of moving to a node is represented
+     * by an int value with walls being marked as Integer.MAX_VALUE
+     */
+    public A_star(int[][] maze) {
         this.maze = maze;
         this.Initialize();
     }
 
     private void Initialize() {
-        this.visited = new boolean[maze.length][maze[0].length];
-        this.distance = new int[maze.length][maze[0].length];
+        this.visited = new boolean[this.maze.length][this.maze[0].length];
+        this.distance = new int[this.maze.length][this.maze[0].length];
         this.path = new ArrayList<>();
 
         for (int i = 0; i < maze.length; i++) {
@@ -90,9 +95,9 @@ public class A_star {
             int distance_to_node = this.distance[node.getY()][node.getX()] + this.maze[newNode.getY()][newNode.getX()];
             newNode.setPrevious(node);
 
-            newNode.setPriority(distance_to_node);
+            newNode.setPriority(distance_to_node + this.ManhattanDistance(newNode, destination));
             this.queue.add(newNode);
-            this.distance[newNode.getY()][newNode.getX()] = distance_to_node + this.ManhattanDistance(node, destination);
+            this.distance[newNode.getY()][newNode.getX()] = distance_to_node;
             this.visited[newNode.getY()][newNode.getX()] = true;
 
             if (newNode.getX() == destination.getX() && newNode.getY() == destination.getY()) {
@@ -109,11 +114,11 @@ public class A_star {
      *
      * @param start The start node.
      * @param destination The destination node.
+     * @return Returns true if a path is found, false if no path is found
      */
-    public void FindPath(Node start, Node destination) {
+    public boolean FindPath(Node start, Node destination) {
         if (!IsValid(start) || !IsValid(destination)) {
-            System.out.println("No path found");
-            return;
+            return false;
         }
         
         //Reset everything to the initial state
@@ -141,8 +146,9 @@ public class A_star {
                 currentNode = currentNode.getPrevious();
             }
             Collections.reverse(this.path);
+            return true;
         } else {
-            System.out.println("No path found");
+            return false;
         }
     }
 
@@ -163,7 +169,7 @@ public class A_star {
      * represents the starting node, 'G' the destination node and '*' a node on
      * the path.
      */
-    public char[][] VisualizePath() {
+    public char[][] GetVisualization() {
         char[][] visualization = new char[this.maze.length][this.maze[0].length];
 
         for (int i = 0; i < maze.length; i++) {
@@ -192,10 +198,10 @@ public class A_star {
      * Prints a visualization of the shortest path.
      */
     public void PrintVisualization() {
-        char[][] mazeMap = VisualizePath();
+        char[][] visualization = GetVisualization();
 
-        for (char[] row : mazeMap) {
-            for (int i = 0; i < mazeMap[0].length; i++) {
+        for (char[] row : visualization) {
+            for (int i = 0; i < visualization[0].length; i++) {
                 System.out.print(row[i] + " ");
             }
             System.out.println();

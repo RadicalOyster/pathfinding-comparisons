@@ -7,49 +7,27 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *Test
- * @author Arne
- */
 public class NodeTest {
     
-    /**
-     *Test
-     */
     public NodeTest() {
     }
     
-    /**
-     *Test
-     */
     @BeforeClass
     public static void setUpClass() {
     }
     
-    /**
-     *Test
-     */
     @AfterClass
     public static void tearDownClass() {
     }
     
-    /**
-     *Test
-     */
     @Before
     public void setUp() {
     }
     
-    /**
-     *Test
-     */
     @After
     public void tearDown() {
     }
 
-    /**
-     *Test
-     */
     @Test
     public void NodeCreatedCorrectly() {
         Node node = new Node(2,1);
@@ -58,9 +36,6 @@ public class NodeTest {
         assertEquals(0, node.getPriority());
     }
     
-    /**
-     *Test
-     */
     @Test
     public void NodeCreatedCorrectlyWithPriority() {
         Node node = new Node(3,2,8);
@@ -69,9 +44,6 @@ public class NodeTest {
         assertEquals(8, node.getPriority());
     }
     
-    /**
-     *Test
-     */
     @Test
     public void SetPriorityWorks() {
         Node node = new Node(2,2);
@@ -80,10 +52,7 @@ public class NodeTest {
         node.setPriority(10);
         assertEquals(10, node.getPriority());
     }
-    
-    /**
-     *Test
-     */
+
     @Test
     public void SettingPreviousNodeWorks() {
         Node node = new Node(2,2);
@@ -91,5 +60,25 @@ public class NodeTest {
         assertEquals(null, node.getPrevious());
         node.setPrevious(node2);
         assertEquals(node2, node.getPrevious());
+    }
+    
+    @Test
+    public void EqualsWorks() {
+        Node node = new Node(2,2,0);
+        Node node2 = new Node(2,2,1);
+        Node node3 = new Node(2,3,0);
+        
+        assertEquals(true, node.equals(node2));
+        assertEquals(false, node.equals(node3));
+    }
+    
+    @Test
+    public void CompareToWorks() {
+        Node node = new Node(2,2,0);
+        Node node2 = new Node(2,2,1);
+        Node node3 = new Node(2,3,4);
+        
+        assertEquals(-1, node.compareTo(node2));
+        assertEquals(3, node3.compareTo(node2));
     }
 }

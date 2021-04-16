@@ -1,5 +1,8 @@
 package pathfinding.pathfinding_comparisons;
 
+import java.util.ArrayDeque;
+import java.util.PriorityQueue;
+
 /**
  * <h1>Pathfinding Comparisons</h1>
  * Main class, currently doesn't do much.
@@ -11,60 +14,67 @@ public class PathfindingComparisons {
      * @param args
      */
     public static void main(String[] args) {
+//        //Create maze
+//        int W = Integer.MAX_VALUE;
+//        int[][] testMaze
+//                = {
+//                    {W, W, 1, W, 1, 1, 1, 1},
+//                    {1, 1, W, 1, 1, W, W, 1},
+//                    {1, 1, 1, W, W, W, 1, 1},
+//                    {W, W, 1, W, 1, 1, 1, 1},
+//                    {1, W, 1, W, 1, 1, W, 1},
+//                    {1, W, 1, 1, W, 1, 1, W},
+//                    {1, 1, 1, W, W, W, 1, 1},
+//                    {1, W, 1, 1, W, 1, 1, 1},
+//                    {1, W, 1, 1, 1, 1, 1, 1},};
+//
+//        //Create test nodes and run the algorithms
+//        Node start = new Node(3, 1);
+//        Node destination = new Node(1, 2);
+//        
+//        //Dijkstra
+//        System.out.println("Running dijkstra: ");
+//        Dijkstra dijkstra = new Dijkstra(testMaze);
+//        dijkstra.FindPath(start, destination);
+//        dijkstra.PrintVisualization();
+//        System.out.println("\n_______\n");
+//        
+//        //A*
+//        System.out.println("Running A*: ");
+//        A_star a_star = new A_star(testMaze);
+//        a_star.FindPath(start, destination);
+//        a_star.PrintVisualization();
+//        System.out.println("\n_______\n");
+//
+//        //IDA*
+//        System.out.println("Running IDA*: ");
+//        IDA_star ida = new IDA_star(testMaze);
+//        ida.FindPath(start, destination);
+//        ida.PrintVisualization();
+        int[][] testMaze
+                = {
+                    {1, 10, 1},
+                    {1, 10, 1},
+                    {1, 1, 1}
+                };
+        Node node = new Node(0,0);
+        Node node2 = new Node(2,0);
         
-        //Create maze
-        int W = Integer.MAX_VALUE;
-        int[][] testMaze =
-        {
-        {W,W,1,W,1,1,1,1},
-        {1,1,W,1,1,W,W,1},
-        {1,1,1,W,W,W,1,1},
-        {W,W,1,W,1,1,1,1},
-        {1,W,1,W,1,1,W,1},
-        {1,W,1,1,W,1,1,W},
-        {1,1,1,W,W,W,1,1},
-        {1,W,1,1,W,1,1,1},
-        {1,W,1,1,1,1,1,1},
-        };
-        
-        //Create test nodes and run the algorithm
-        Node start = new Node(3, 1);
-        Node destination = new Node(1, 2);
-        
+        IDA_star ida = new IDA_star(testMaze);
+        A_star a_star = new A_star(testMaze);
         Dijkstra dijkstra = new Dijkstra(testMaze);
-        dijkstra.FindPath(start, destination);
         
-        System.out.println(dijkstra.GetPath().toString());
+        dijkstra.FindPath(node, node2);
         dijkstra.PrintVisualization();
+        System.out.println("\n\n______\n\n");
         
-        start = new Node(0,4);
-        destination = new Node(7,4);
-        dijkstra.FindPath(start, destination);
+        ida.FindPath(node, node2);
+        ida.PrintVisualization();
         
-        System.out.println("");
+        System.out.println("\n\n______\n\n");
         
-        System.out.println(dijkstra.GetPath().toString());
-        dijkstra.PrintVisualization();
-
-        A_star astar = new A_star(testMaze);
-        astar.FindPath(start, destination);
-        
-        System.out.println(astar.GetPath().toString());
-        astar.PrintVisualization();
-        
-        start = new Node(0,4);
-        destination = new Node(7,4);
-        astar.FindPath(start, destination);
-        
-        System.out.println("");
-        
-        System.out.println(astar.GetPath().toString());
-        astar.PrintVisualization();
-        Node node = new Node(1,1,0);
-        Node node2 = new Node(1,1,5);
-        Node node3 = new Node(1,2,0);
-        System.out.println(node2.equals(node));
-        System.out.println(node3.equals(node));
+        a_star.FindPath(node, node2);
+        a_star.PrintVisualization();
     }
 
 }
