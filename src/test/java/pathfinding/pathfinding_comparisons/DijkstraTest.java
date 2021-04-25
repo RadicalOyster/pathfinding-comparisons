@@ -1,5 +1,6 @@
 package pathfinding.pathfinding_comparisons;
 
+import data_structures.MazeNodeList;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -76,10 +77,11 @@ public class DijkstraTest {
         Node destination = new Node(7,5);
         
         dijkstra.FindPath(start, destination);
-        ArrayList<Node> path = dijkstra.GetPath();
-        path.forEach((node) -> {
+        MazeNodeList path = dijkstra.GetPath();
+        for (int i = 0; i < path.size(); i++) {
+            Node node = path.get(i);
             assertEquals(true, dijkstra.IsValid(node));
-        });
+        }
     }
     
     @Test
@@ -100,7 +102,7 @@ public class DijkstraTest {
         Node destination = new Node(0,3);
         
         dijkstra.FindPath(start, destination);
-        ArrayList<Node> path = dijkstra.GetPath();
+        MazeNodeList path = dijkstra.GetPath();
         
         ArrayList<Node> correctPath = new ArrayList<>();
         correctPath.add(new Node(2,2));

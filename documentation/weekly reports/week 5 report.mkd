@@ -1,0 +1,3 @@
+# Week 5 Report
+
+This week I replaced Java's premade data structures with my own implementations. Arraydeque and PriorityQueue have been replaced with the class Nodeheap and ArrayList with MazeNodeList which contain the required functionality to run the pathfinding algorithms.

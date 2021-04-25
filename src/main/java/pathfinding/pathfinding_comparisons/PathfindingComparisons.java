@@ -48,29 +48,19 @@ public class PathfindingComparisons {
         ida.FindPath(start, destination);
         ida.PrintVisualization();
         
-        NodeHeap testHeap = new NodeHeap();
+                int[][] maze =
+        {
+        {1,10,1},
+        {1,10,1},
+        {1,1,1}
+        };
         
-        testHeap.insert(new Node(12,11,11));
-        testHeap.insert(new Node(14,11,15));
-        testHeap.insert(new Node(12,18,0));
-        testHeap.insert(new Node(9,16));
+        A_star d_star = new A_star(maze);
+        Node start2 = new Node(0,0);
+        Node destination2 = new Node(2,0);
+        d_star.FindPath(start2, destination2);
         
-        System.out.println(testHeap.poll());
-        System.out.println(testHeap.poll());
-        System.out.println(testHeap.poll());
-        System.out.println(testHeap.poll());
-        System.out.println(testHeap.poll());
-        
-        MazeNodeList nodes = new MazeNodeList();
-        Node node = new Node(11,12,4);
-        Node node2 = new Node(14,16,8);
-        nodes.add(node);
-        nodes.add(node2);
-        
-        System.out.println(nodes.toString());
-        
-        System.out.println(nodes.get(0).toString());
-        System.out.println(nodes.get(1).toString());
+        d_star.PrintVisualization();
     }
 
 }

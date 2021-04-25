@@ -1,5 +1,6 @@
 package pathfinding.pathfinding_comparisons;
 
+import data_structures.MazeNodeList;
 import java.util.ArrayList;
 import java.util.Collections;
 import data_structures.NodeHeap;
@@ -17,7 +18,7 @@ public class Dijkstra {
     boolean[][] visited;
     int[][] distance;
     boolean pathFound;
-    ArrayList<Node> path;
+    MazeNodeList path;
 
     /**
      *
@@ -32,7 +33,7 @@ public class Dijkstra {
     private void Initialize() {
         this.visited = new boolean[maze.length][maze[0].length];
         this.distance = new int[maze.length][maze[0].length];
-        this.path = new ArrayList<>();
+        this.path = new MazeNodeList();
 
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[0].length; j++) {
@@ -125,7 +126,7 @@ public class Dijkstra {
         //no path has been found
         if (this.pathFound) {
             Node currentNode = destination;
-            this.path = new ArrayList<>();
+            this.path = new MazeNodeList();
             while (true) {
                 this.path.add(currentNode);
                 if (currentNode.getX() == start.getX() && currentNode.getY() == start.getY()) {
@@ -133,7 +134,7 @@ public class Dijkstra {
                 }
                 currentNode = currentNode.getPrevious();
             }
-            Collections.reverse(this.path);
+            this.path.reverse();
             return true;
         } else {
             return false;
@@ -145,7 +146,7 @@ public class Dijkstra {
      *
      * @return The current path.
      */
-    public ArrayList<Node> GetPath() {
+    public MazeNodeList GetPath() {
         return this.path;
     }
 
@@ -171,9 +172,10 @@ public class Dijkstra {
         }
 
         if (this.path.size() > 0) {
-            this.path.forEach((node) -> {
+            for (int i = 0; i < this.path.size(); i++) {
+                Node node = path.get(i);
                 visualization[node.getY()][node.getX()] = '*';
-            });
+            }
 
             visualization[this.path.get(0).getY()][this.path.get(0).getX()] = 'S';
             visualization[this.path.get(this.path.size() - 1).getY()][this.path.get(this.path.size() - 1).getX()] = 'G';

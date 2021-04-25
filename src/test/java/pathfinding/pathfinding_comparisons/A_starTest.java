@@ -1,5 +1,6 @@
 package pathfinding.pathfinding_comparisons;
 
+import data_structures.MazeNodeList;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -75,10 +76,11 @@ public class A_starTest {
         Node destination = new Node(7,5);
         
         a_star.FindPath(start, destination);
-        ArrayList<Node> path = a_star.GetPath();
-        path.forEach((node) -> {
+        MazeNodeList path = a_star.GetPath();
+        for (int i = 0; i < path.size(); i++) {
+            Node node = path.get(i);
             assertEquals(true, a_star.IsValid(node));
-        });
+        }
     }
     
     @Test
@@ -99,7 +101,7 @@ public class A_starTest {
         Node destination = new Node(0,3);
         
         a_star.FindPath(start, destination);
-        ArrayList<Node> path = a_star.GetPath();
+        MazeNodeList path = a_star.GetPath();
         
         ArrayList<Node> correctPath = new ArrayList<>();
         correctPath.add(new Node(2,2));
