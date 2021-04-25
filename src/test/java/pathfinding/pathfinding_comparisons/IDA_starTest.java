@@ -1,5 +1,6 @@
 package pathfinding.pathfinding_comparisons;
 
+import data_structures.MazeNodeList;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -49,7 +50,7 @@ public class IDA_starTest {
         assertArrayEquals(ida.maze, maze);
         assertEquals(maze.length,ida.distance.length);
         assertEquals(0,ida.GetPath().size());
-        assertEquals(0,ida.path.size());
+        assertEquals(0,ida.getPath().size());
     }
     
     @Test
@@ -74,10 +75,11 @@ public class IDA_starTest {
         Node destination = new Node(7,5);
         
         ida.FindPath(start, destination);
-        ArrayList<Node> path = ida.GetPath();
-        path.forEach((node) -> {
-            assertEquals(true, ida.IsValid(node));
-        });
+        MazeNodeList path = ida.GetPath();
+        
+        for (int i = 0; i < path.size(); i++) {
+            assertEquals(true, ida.IsValid(path.get(i)));
+        }
     }
     
     @Test
@@ -98,7 +100,7 @@ public class IDA_starTest {
         Node destination = new Node(0,3);
         
         ida.FindPath(start, destination);
-        ArrayList<Node> path = ida.GetPath();
+        MazeNodeList path = ida.GetPath();
         
         ArrayList<Node> correctPath = new ArrayList<>();
         correctPath.add(new Node(2,2));

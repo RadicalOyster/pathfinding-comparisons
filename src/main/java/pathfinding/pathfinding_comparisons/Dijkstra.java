@@ -2,7 +2,7 @@ package pathfinding.pathfinding_comparisons;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.PriorityQueue;
+import data_structures.NodeHeap;
 
 /**
  * <h1>Dijkstra's Algorithm</h1>
@@ -12,7 +12,7 @@ import java.util.PriorityQueue;
  */
 public class Dijkstra {
 
-    PriorityQueue<Node> queue;
+    NodeHeap queue;
     int[][] maze;
     boolean[][] visited;
     int[][] distance;
@@ -41,7 +41,7 @@ public class Dijkstra {
         }
 
         this.pathFound = false;
-        this.queue = new PriorityQueue();
+        this.queue = new NodeHeap();
     }
 
     /**
@@ -85,7 +85,7 @@ public class Dijkstra {
             newNode.setPrevious(node);
 
             newNode.setPriority(distance_to_node);
-            this.queue.add(newNode);
+            this.queue.insert(newNode);
             this.distance[newNode.getY()][newNode.getX()] = distance_to_node;
             this.visited[newNode.getY()][newNode.getX()] = true;
 
@@ -113,7 +113,7 @@ public class Dijkstra {
         Initialize();
         this.distance[start.getX()][start.getY()] = 0;
         this.visited[start.getX()][start.getY()] = true;
-        this.queue.add(start);
+        this.queue.insert(start);
         
         //Go through nodes until all nodes have been explored or a path is found
         while (!(this.pathFound) && queue.size() > 0) {

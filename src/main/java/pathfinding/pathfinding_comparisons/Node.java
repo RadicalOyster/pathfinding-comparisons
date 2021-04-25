@@ -16,13 +16,13 @@ public class Node implements Comparable<Node> {
     int priority;
     Node previous;
     
-    Node(int x, int y, int priority) {
+    public Node(int x, int y, int priority) {
         this.x = x;
         this.y = y;
         this.priority = priority;
     }
 
-    Node(int x, int y) {
+    public Node(int x, int y) {
         this.x = x;
         this.y = y;
         this.priority = 0;
@@ -91,7 +91,7 @@ public class Node implements Comparable<Node> {
      /**
      * Comparator to compare nodes. Nodes are sorted by their priority.
      * @param o Node to compare this node to.
-     * @return Result of the comparison.
+     * @return This node's priority minus the priority of Node o.
      */   
     @Override
     public int compareTo(Node o) {
@@ -119,14 +119,7 @@ public class Node implements Comparable<Node> {
         }
         return false;
     }
-    
-    public boolean equals(Node node) {
-        if (node.getX() == this.x && node.getY() == this.y) {
-            return true;
-        }
-        
-        return false;
-    }
+
     
     @Override
     public int hashCode() {

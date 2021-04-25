@@ -1,7 +1,7 @@
 package pathfinding.pathfinding_comparisons;
 
-import java.util.ArrayDeque;
-import java.util.PriorityQueue;
+import data_structures.MazeNodeList;
+import data_structures.NodeHeap;
 
 /**
  * <h1>Pathfinding Comparisons</h1>
@@ -47,6 +47,30 @@ public class PathfindingComparisons {
         IDA_star ida = new IDA_star(testMaze);
         ida.FindPath(start, destination);
         ida.PrintVisualization();
+        
+        NodeHeap testHeap = new NodeHeap();
+        
+        testHeap.insert(new Node(12,11,11));
+        testHeap.insert(new Node(14,11,15));
+        testHeap.insert(new Node(12,18,0));
+        testHeap.insert(new Node(9,16));
+        
+        System.out.println(testHeap.poll());
+        System.out.println(testHeap.poll());
+        System.out.println(testHeap.poll());
+        System.out.println(testHeap.poll());
+        System.out.println(testHeap.poll());
+        
+        MazeNodeList nodes = new MazeNodeList();
+        Node node = new Node(11,12,4);
+        Node node2 = new Node(14,16,8);
+        nodes.add(node);
+        nodes.add(node2);
+        
+        System.out.println(nodes.toString());
+        
+        System.out.println(nodes.get(0).toString());
+        System.out.println(nodes.get(1).toString());
     }
 
 }

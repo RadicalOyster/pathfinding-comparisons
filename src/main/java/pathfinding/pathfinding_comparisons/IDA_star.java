@@ -1,9 +1,7 @@
 package pathfinding.pathfinding_comparisons;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.PriorityQueue;
+import data_structures.NodeHeap;
+import data_structures.MazeNodeList;
 
 /**
  * <h1>IDA* Algorithm</h1>
@@ -17,8 +15,8 @@ public class IDA_star {
     final int[][] maze;
     int[][] distance;
     private boolean pathFound;
-    ArrayDeque<Node> path;
-    private ArrayList<Node> finalPath;
+    private NodeHeap path;
+    private MazeNodeList finalPath;
 
     /**
      *
@@ -41,8 +39,8 @@ public class IDA_star {
         }
 
         this.pathFound = false;
-        this.path = new ArrayDeque<>();
-        this.finalPath = new ArrayList<>();
+        this.path = new NodeHeap();
+        this.finalPath = new MazeNodeList();
     }
     
     //Calculates the manhattan distance between two nodes.
@@ -66,8 +64,8 @@ public class IDA_star {
     * @param node The parent node.
     * @return PriorityQueue containing all the child nodes of the given node.
     */
-    private PriorityQueue<Node> Successors(Node node) {
-        PriorityQueue<Node> successors = new PriorityQueue<>();
+    private NodeHeap Successors(Node node) {
+        NodeHeap successors = new NodeHeap();
         //System.out.println("CURRENTLY EXPANDING " + node);
         for (int i = 0; i < 4; i++) {
             Node newNode = new Node(node.getX(), node.getY(), 0);
@@ -106,7 +104,7 @@ public class IDA_star {
         this.Initialize();
         this.distance[start.getY()][start.getX()] = 0;
         int threshold = ManhattanDistance(start, destination);
-        this.path.push(start);
+        this.path.insert(start);
         
         while (true) {
             threshold = this.Search(0, threshold, destination);
@@ -125,7 +123,7 @@ public class IDA_star {
                 break;
             }
         }
-        Collections.reverse(this.finalPath);
+        this.finalPath.reverse();
     }
 
     /**
@@ -150,7 +148,7 @@ public class IDA_star {
         }
 
         int min = Integer.MAX_VALUE;
-        PriorityQueue<Node> successors = this.Successors(currentNode);
+        NodeHeap successors = this.Successors(currentNode);
         while (successors.size() > 0) {
             Node successor = successors.poll();
             if (!(this.path.contains(successor))) {
@@ -209,7 +207,7 @@ public class IDA_star {
      *
      * @return The current path.
      */
-    public ArrayList<Node> GetPath() {
+    public MazeNodeList GetPath() {
         return this.finalPath;
     }
 
@@ -242,5 +240,9 @@ public class IDA_star {
         }
 
         return length;
+    }
+    
+    public NodeHeap getPath() {
+        return this.path;
     }
 }
