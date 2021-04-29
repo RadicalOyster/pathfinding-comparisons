@@ -1,7 +1,6 @@
 package pathfinding.pathfinding_comparisons;
 
-import data_structures.MazeNodeList;
-import data_structures.NodeHeap;
+import ui.Gui;
 
 /**
  * <h1>Pathfinding Comparisons</h1>
@@ -23,7 +22,9 @@ public class PathfindingComparisons {
                     {1, 1, 1, W, W, W, 1, 1},
                     {1, W, 1, 1, W, 1, 1, 1},
                     {1, W, 1, 1, 1, 1, 1, 1},};
-
+        
+        Gui gui = new Gui();
+        gui.launch();
         //Create test nodes and run the algorithms
         Node start = new Node(3, 1);
         Node destination = new Node(1, 2);

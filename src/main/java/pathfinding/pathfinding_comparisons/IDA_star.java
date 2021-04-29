@@ -17,6 +17,7 @@ public class IDA_star {
     private boolean pathFound;
     private NodeHeap path;
     private MazeNodeList finalPath;
+    Timer timer;
 
     /**
      *
@@ -26,6 +27,7 @@ public class IDA_star {
     public IDA_star(int[][] maze) {
         this.maze = maze;
         this.Initialize();
+        this.timer = new Timer();
     }
     
     //Initialize data structures
@@ -101,6 +103,7 @@ public class IDA_star {
      * @param destination The destination node.
      */
     public void FindPath(Node start, Node destination) {
+        this.timer.Start();
         this.Initialize();
         this.distance[start.getY()][start.getX()] = 0;
         int threshold = ManhattanDistance(start, destination);
@@ -123,6 +126,7 @@ public class IDA_star {
                 break;
             }
         }
+        this.timer.Stop();
         this.finalPath.reverse();
     }
 
@@ -244,5 +248,9 @@ public class IDA_star {
     
     public NodeHeap getPath() {
         return this.path;
+    }
+    
+    public long getDuration() {
+        return this.timer.duration;
     }
 }

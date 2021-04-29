@@ -17,6 +17,7 @@ public class A_star {
     int[][] distance;
     boolean pathFound;
     MazeNodeList path;
+    Timer timer;
 
     /**
      *
@@ -25,6 +26,7 @@ public class A_star {
      */
     public A_star(int[][] maze) {
         this.maze = maze;
+        this.timer = new Timer();
         this.Initialize();
     }
 
@@ -116,7 +118,9 @@ public class A_star {
      * @return Returns true if a path is found, false if no path is found
      */
     public boolean FindPath(Node start, Node destination) {
+        this.timer.Start();
         if (!IsValid(start) || !IsValid(destination)) {
+            this.timer.Stop();
             return false;
         }
         
@@ -144,9 +148,11 @@ public class A_star {
                 }
                 currentNode = currentNode.getPrevious();
             }
+            this.timer.Stop();
             this.path.reverse();
             return true;
         } else {
+            this.timer.Stop();
             return false;
         }
     }
@@ -224,5 +230,9 @@ public class A_star {
         }
 
         return length;
+    }
+    
+    public long getDuration() {
+        return this.timer.duration;
     }
 }

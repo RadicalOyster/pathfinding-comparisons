@@ -1,8 +1,6 @@
 package pathfinding.pathfinding_comparisons;
 
 import data_structures.MazeNodeList;
-import java.util.ArrayList;
-import java.util.Collections;
 import data_structures.NodeHeap;
 
 /**
@@ -19,6 +17,7 @@ public class Dijkstra {
     int[][] distance;
     boolean pathFound;
     MazeNodeList path;
+    Timer timer;
 
     /**
      *
@@ -28,6 +27,7 @@ public class Dijkstra {
     public Dijkstra(int[][] maze) {
         this.maze = maze;
         this.Initialize();
+        this.timer = new Timer();
     }
 
     private void Initialize() {
@@ -107,7 +107,9 @@ public class Dijkstra {
      * @return 
      */
     public boolean FindPath(Node start, Node destination) {
+        this.timer.Start();
         if (!IsValid(start) || !IsValid(destination)) {
+            this.timer.Stop();
             return false;
         }
         //Reset everything to the initial state
@@ -134,9 +136,11 @@ public class Dijkstra {
                 }
                 currentNode = currentNode.getPrevious();
             }
+            this.timer.Stop();
             this.path.reverse();
             return true;
         } else {
+            this.timer.Stop();
             return false;
         }
     }
@@ -214,5 +218,9 @@ public class Dijkstra {
         }
 
         return length;
+    }
+    
+    public long getDuration() {
+        return this.timer.getDuration();
     }
 }
