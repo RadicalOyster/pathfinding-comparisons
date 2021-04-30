@@ -1,9 +1,9 @@
-package pathfinding.pathfinding_comparisons;
+package domain;
 
 public class Timer {
     long startTime;
     long endTime;
-    long duration;
+    public long duration;
     
     public Timer() {
         this.startTime = 0;

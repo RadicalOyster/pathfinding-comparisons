@@ -1,7 +1,7 @@
 package data_structures;
 
 import java.util.Arrays;
-import pathfinding.pathfinding_comparisons.Node;
+import domain.Node;
 
 /**
  *

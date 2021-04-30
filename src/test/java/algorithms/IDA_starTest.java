@@ -1,5 +1,6 @@
-package pathfinding.pathfinding_comparisons;
+package algorithms;
 
+import algorithms.IDA_star;
 import data_structures.MazeNodeList;
 import java.util.ArrayList;
 import org.junit.After;
@@ -7,6 +8,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import domain.Node;
 import static org.junit.Assert.*;
 
 public class IDA_starTest {

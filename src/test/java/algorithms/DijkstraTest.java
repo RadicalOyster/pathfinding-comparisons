@@ -1,5 +1,6 @@
-package pathfinding.pathfinding_comparisons;
+package algorithms;
 
+import algorithms.Dijkstra;
 import data_structures.MazeNodeList;
 import java.util.ArrayList;
 import org.junit.After;
@@ -7,13 +8,15 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import domain.Node;
 import static org.junit.Assert.*;
 
-public class A_starTest {
-    
-    public A_starTest() {
+public class DijkstraTest {
+
+    public DijkstraTest() {
+
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
@@ -46,12 +49,12 @@ public class A_starTest {
         {1,W,1,1,1,1,1,1},
         };
         
-        A_star a_star = new A_star(maze);
-        assertArrayEquals(a_star.maze, maze);
-        assertEquals(maze.length,a_star.distance.length);
-        assertEquals(maze.length,a_star.visited.length);
-        assertEquals(0,a_star.GetPath().size());
-        assertEquals(0,a_star.queue.size());
+        Dijkstra dijkstra = new Dijkstra(maze);
+        assertArrayEquals(dijkstra.maze, maze);
+        assertEquals(maze.length,dijkstra.distance.length);
+        assertEquals(maze.length,dijkstra.visited.length);
+        assertEquals(0,dijkstra.GetPath().size());
+        assertEquals(0,dijkstra.queue.size());
     }
     
     @Test
@@ -70,16 +73,16 @@ public class A_starTest {
         {1,W,1,1,1,1,1,1},
         };
         
-        A_star a_star = new A_star(maze);
+        Dijkstra dijkstra = new Dijkstra(maze);
         
         Node start = new Node(0,1);
         Node destination = new Node(7,5);
         
-        a_star.FindPath(start, destination);
-        MazeNodeList path = a_star.GetPath();
+        dijkstra.FindPath(start, destination);
+        MazeNodeList path = dijkstra.GetPath();
         for (int i = 0; i < path.size(); i++) {
             Node node = path.get(i);
-            assertEquals(true, a_star.IsValid(node));
+            assertEquals(true, dijkstra.IsValid(node));
         }
     }
     
@@ -95,13 +98,13 @@ public class A_starTest {
         {1,1,1,W,1}
         };
         
-        A_star a_star = new A_star(maze);
+        Dijkstra dijkstra = new Dijkstra(maze);
         
         Node start = new Node(2,2);
         Node destination = new Node(0,3);
         
-        a_star.FindPath(start, destination);
-        MazeNodeList path = a_star.GetPath();
+        dijkstra.FindPath(start, destination);
+        MazeNodeList path = dijkstra.GetPath();
         
         ArrayList<Node> correctPath = new ArrayList<>();
         correctPath.add(new Node(2,2));
@@ -121,8 +124,8 @@ public class A_starTest {
         start = new Node(0,3);
         destination = new Node(4,0);
         
-        a_star.FindPath(start, destination);
-        path = a_star.GetPath();
+        dijkstra.FindPath(start, destination);
+        path = dijkstra.GetPath();
         
         correctPath = new ArrayList<>();
         correctPath.add(new Node(0,3));
@@ -153,11 +156,11 @@ public class A_starTest {
         {1,1,1}
         };
         
-        A_star a_star = new A_star(maze);
+        Dijkstra dijkstra = new Dijkstra(maze);
         Node start = new Node(0,0);
         Node destination = new Node(2,0);
-        a_star.FindPath(start, destination);
+        dijkstra.FindPath(start, destination);
         
-        assertEquals(6, a_star.LengthOfPath());
+        assertEquals(6, dijkstra.LengthOfPath());
     }
 }

@@ -1,5 +1,9 @@
 package pathfinding.pathfinding_comparisons;
 
+import domain.Node;
+import algorithms.A_star;
+import algorithms.IDA_star;
+import algorithms.Dijkstra;
 import ui.Gui;
 
 /**

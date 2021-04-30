@@ -1,7 +1,7 @@
 package data_structures;
 
 
-import pathfinding.pathfinding_comparisons.Node;
+import domain.Node;
 
 /**
 * A list object for storing nodes.

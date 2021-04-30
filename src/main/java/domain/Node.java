@@ -1,6 +1,4 @@
-package pathfinding.pathfinding_comparisons;
-
-import java.util.Objects;
+package domain;
 
 /**
  * <h1>Node</h1>
@@ -13,8 +11,8 @@ import java.util.Objects;
 public class Node implements Comparable<Node> {
     Integer x;
     Integer y;
-    int priority;
-    Node previous;
+    public int priority;
+    public Node previous;
     
     public Node(int x, int y, int priority) {
         this.x = x;

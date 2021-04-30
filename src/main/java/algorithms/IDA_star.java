@@ -1,7 +1,9 @@
-package pathfinding.pathfinding_comparisons;
+package algorithms;
 
 import data_structures.NodeHeap;
 import data_structures.MazeNodeList;
+import domain.Node;
+import domain.Timer;
 
 /**
  * <h1>IDA* Algorithm</h1>

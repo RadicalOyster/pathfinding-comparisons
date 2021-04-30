@@ -14,10 +14,10 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.text.NumberFormatter;
-import pathfinding.pathfinding_comparisons.A_star;
-import pathfinding.pathfinding_comparisons.Dijkstra;
-import pathfinding.pathfinding_comparisons.IDA_star;
-import pathfinding.pathfinding_comparisons.Node;
+import algorithms.A_star;
+import algorithms.Dijkstra;
+import algorithms.IDA_star;
+import domain.Node;
 
 /**
  * A class containing the graphical user interface Needs a lot of cleanup
