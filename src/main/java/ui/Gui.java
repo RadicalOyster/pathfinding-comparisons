@@ -18,6 +18,11 @@ import algorithms.A_star;
 import algorithms.Dijkstra;
 import algorithms.IDA_star;
 import domain.Node;
+import domain.TestResult;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import javax.swing.BoxLayout;
+import performance_test.PerformanceTest;
 
 /**
  * A class containing the graphical user interface Needs a lot of cleanup
@@ -35,6 +40,7 @@ public class Gui {
     private Node start;
     private Node end;
     private final int GRIDSIZE = 40;
+    private PerformanceTest performance;
     JLabel dijkstraTime = new JLabel("Dijkstra: ");
     JLabel aStarTime = new JLabel("A*: ");
     JLabel idaStarTime = new JLabel("IDA: ");
@@ -42,24 +48,27 @@ public class Gui {
     public Gui() {
         this.frame = new JFrame("Pathfinding");
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.frame.setSize(900, 900);
+        this.frame.setSize(1100, 900);
         this.grid = new GridLayout(GRIDSIZE, GRIDSIZE);
         this.panel = new JPanel();
         this.panel.setLayout(grid);
+        this.panel.setSize(800, 800);
         this.maze = new int[GRIDSIZE][GRIDSIZE];
         this.buttons = new GridButton[GRIDSIZE][GRIDSIZE];
+        this.performance = new PerformanceTest();
 
         this.start = new Node(0, 0);
         this.end = new Node(0, 1);
 
-        JPanel test = new JPanel();
+        //Create top panel
+        JPanel topPanel = new JPanel();
 
         JButton selectStart = new JButton("Select start point");
         JLabel startNode = new JLabel("Start: " + this.start.toString());
-        test.add(startNode);
+        topPanel.add(startNode);
         JButton selectEnd = new JButton("Select end point");
         JLabel endNode = new JLabel("End: " + this.end.toString());
-        test.add(endNode);
+        topPanel.add(endNode);
 
         selectStart.addActionListener(event -> {
             this.selectingStart = true;
@@ -71,12 +80,12 @@ public class Gui {
             this.selectingStart = false;
         });
 
-        test.add(selectStart);
-        test.add(selectEnd);
+        topPanel.add(selectStart);
+        topPanel.add(selectEnd);
 
         JCheckBox wallCheckBox = new JCheckBox();
-        test.add(new JLabel("Add wall"));
-        test.add(wallCheckBox);
+        topPanel.add(new JLabel("Add wall"));
+        topPanel.add(wallCheckBox);
 
         NumberFormat format = NumberFormat.getInstance();
         NumberFormatter formatter = new NumberFormatter(format);
@@ -91,35 +100,92 @@ public class Gui {
         nodeCost.setValue(1);
         nodeCost.setText(Integer.toString(1));
 
-        test.add(new JLabel("Node cost"));
+        topPanel.add(new JLabel("Node cost"));
         nodeCost.setColumns(4);
-        test.add(nodeCost);
+        topPanel.add(nodeCost);
 
         JComboBox algorithm = new JComboBox(algorithms);
         algorithm.setSelectedIndex(0);
         algorithm.addActionListener(algorithm);
-        test.add(new JLabel("Algorithm"));
-        test.add(algorithm);
+        topPanel.add(new JLabel("Algorithm"));
+        topPanel.add(algorithm);
 
         JButton runAlgorithm = new JButton("Run Algorithm");
         runAlgorithm.addActionListener(event -> {
             this.runSelectedAlgorithm(algorithm.getSelectedIndex());
         });
 
-        test.add(runAlgorithm);
+        topPanel.add(runAlgorithm);
         
-        JPanel test2 = new JPanel();
+        //Create right panel
+        JPanel rightPanel = new JPanel();
+        rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
         
+        JLabel testOne = new JLabel();
+        JLabel testOneDijkstra = new JLabel("");
+        JLabel testOneAStar = new JLabel("");
+        JLabel testOneIda = new JLabel("");
+        
+        JLabel testTwo = new JLabel("");
+        JLabel testTwoDijkstra = new JLabel("");
+        JLabel testTwoAStar = new JLabel("");
+        JLabel testTwoIda = new JLabel("");
+        
+        JLabel testThree = new JLabel("");
+        JLabel testThreeDijkstra = new JLabel("");
+        JLabel testThreeAStar = new JLabel("");
+        JLabel testThreeIda = new JLabel("");
+        
+        JButton performanceTests = new JButton("Test Performance");
+        performanceTests.addActionListener(event -> {
+            this.performance.RunTests();
+            TestResult[] results = this.performance.getResults();
+            
+            testOneDijkstra.setText("Dijkstra average: " + results[0].getDijkstraAverage() + "ms");
+            testOneAStar.setText("A* average: " + results[0].getAStarAverage()+ "ms");
+            testOneIda.setText("IDA* average: " + results[0].getIdaAverage() + "ms");
+            testOne.setText("Test 1: ");
+            
+            testTwoDijkstra.setText("Dijkstra average: " + results[1].getDijkstraAverage() + "ms");
+            testTwoAStar.setText("A* average: " + results[1].getAStarAverage()+ "ms");
+            testTwoIda.setText("IDA* average: " + results[1].getIdaAverage() + "ms");
+            testTwo.setText("Test 2: ");
+
+            testThreeDijkstra.setText("Dijkstra average: " + results[2].getDijkstraAverage() + "ms");
+            testThreeAStar.setText("A* average: " + results[2].getAStarAverage()+ "ms");
+            testThreeIda.setText("IDA* average: " + results[2].getIdaAverage() + "ms");
+            testThree.setText("Test 3: ");
+        });
+        
+        rightPanel.add(performanceTests);
+        rightPanel.add(testOne);
+        rightPanel.add(testOneDijkstra);
+        rightPanel.add(testOneAStar);
+        rightPanel.add(testOneIda);
+        
+        rightPanel.add(testTwo);
+        rightPanel.add(testTwoDijkstra);
+        rightPanel.add(testTwoAStar);
+        rightPanel.add(testTwoIda);        
+        
+        rightPanel.add(testThree);
+        rightPanel.add(testThreeDijkstra);
+        rightPanel.add(testThreeAStar);
+        rightPanel.add(testThreeIda);  
+
+        JPanel bottomPanel = new JPanel();
+
         dijkstraTime = new JLabel("Dijkstra: ");
         aStarTime = new JLabel("A*: ");
         idaStarTime = new JLabel("IDA: ");
-        
-        test2.add(dijkstraTime);
-        test2.add(aStarTime);
-        test2.add(idaStarTime);
-        
-        this.frame.getContentPane().add(BorderLayout.NORTH, test);
-        this.frame.getContentPane().add(BorderLayout.SOUTH, test2);
+
+        bottomPanel.add(dijkstraTime);
+        bottomPanel.add(aStarTime);
+        bottomPanel.add(idaStarTime);
+
+        this.frame.getContentPane().add(BorderLayout.NORTH, topPanel);
+        this.frame.getContentPane().add(BorderLayout.SOUTH, bottomPanel);
+        this.frame.getContentPane().add(BorderLayout.EAST, rightPanel);
 
         for (int i = 0; i < GRIDSIZE; i++) {
             for (int j = 0; j < GRIDSIZE; j++) {
@@ -143,7 +209,7 @@ public class Gui {
                 newButton.setText(name);
                 newButton.setMargin(new Insets(1, 1, 1, 1));
                 newButton.setBackground(Color.white);
-
+                
                 newButton.addActionListener(event
                         -> {
                     GridButton button = (GridButton) event.getSource();
@@ -182,6 +248,7 @@ public class Gui {
                         this.maze[button.getRow()][button.getCol()] = Integer.parseInt(nodeCost.getValue().toString());
                     }
                 });
+
                 this.panel.add(newButton);
                 this.buttons[i][j] = newButton;
             }
@@ -215,7 +282,7 @@ public class Gui {
                 }
             }
         }
-        
+
         String newLabel;
 
         if (index == 0) {
@@ -227,49 +294,43 @@ public class Gui {
                 Node node = path.get(i);
                 colorPathNode(node);
             }
-            
+
             newLabel = "Dijkstra from ";
-            
+
             newLabel += this.start.toString() + " to " + this.end.toString() + " completed in: ";
             newLabel += Long.toString(dijkstra.getDuration()) + " ns";
             dijkstraTime.setText(newLabel);
-        }
-        
-        else if (index == 1) {
+        } else if (index == 1) {
             A_star astar = new A_star(this.maze);
             astar.FindPath(this.start, this.end);
             MazeNodeList path = astar.GetPath();
-            
+
             for (int i = 0; i < path.size(); i++) {
                 Node node = path.get(i);
                 colorPathNode(node);
             }
-            
+
             newLabel = "A* from ";
-            
+
             newLabel += this.start.toString() + " to " + this.end.toString() + " completed in: ";
             newLabel += Long.toString(astar.getDuration()) + " ns";
             aStarTime.setText(newLabel);
-        }
-        
-        else if (index == 2) {
+        } else if (index == 2) {
             IDA_star ida = new IDA_star(this.maze);
             ida.FindPath(this.start, this.end);
             MazeNodeList path = ida.GetPath();
-            
+
             for (int i = 0; i < path.size(); i++) {
                 Node node = path.get(i);
                 colorPathNode(node);
             }
-            
+
             newLabel = "IDA* from ";
-            
+
             newLabel += this.start.toString() + " to " + this.end.toString() + " completed in: ";
             newLabel += Long.toString(ida.getDuration()) + " ns";
             idaStarTime.setText(newLabel);
         }
-        
-       
     }
-    
+
 }

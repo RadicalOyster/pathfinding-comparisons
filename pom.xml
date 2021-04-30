@@ -42,10 +42,16 @@
                 <version>1.1.9</version>
                 <configuration>
                     <targetClasses>
-                        <param>pathfinding.pathfinding_comparisons*</param>
+                        <param>pathfinding.pathfinding_comparisons.algorithms</param>
+                        <param>pathfinding.pathfinding_comparisons.data_structures</param>
+                        <param>pathfinding.pathfinding_comparisons.domain</param>
+                        <param>pathfinding.pathfinding_comparisons.pathfinding</param>
                     </targetClasses>
                     <targetTests>
-                        <param>pathfinding.pathfinding_comparisons*</param>
+                        <param>pathfinding.pathfinding_comparisons.algorithms</param>
+                        <param>pathfinding.pathfinding_comparisons.data_structures</param>
+                        <param>pathfinding.pathfinding_comparisons.domain</param>
+                        <param>pathfinding.pathfinding_comparisons.pathfinding</param>
                     </targetTests>
                 </configuration>
             </plugin>
