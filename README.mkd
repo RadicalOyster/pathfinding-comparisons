@@ -6,6 +6,8 @@ This project aims to implement and compare the efficiency various pathfinding al
 
 * [Project outline](https://github.com/RadicalOyster/pathfinding-comparisons/blob/main/documentation/project%20outline.mkd)
 
+* [User intructions](https://github.com/RadicalOyster/pathfinding-comparisons/tree/main/documentation/user%20instructions)
+
 * [Weekly reports](https://github.com/RadicalOyster/pathfinding-comparisons/tree/main/documentation/weekly%20reports)
 
 * [Test coverage](https://github.com/RadicalOyster/pathfinding-comparisons/tree/main/documentation/test%20coverage)

@@ -1,0 +1,7 @@
+## Running the project
+
+To run the project, use the command:
+
+`mvn compile exec:java`
+
+This will open up an interactive window to compare the algorithms on a 40x40 canvas. Functionality for large scale testing yet to come.
