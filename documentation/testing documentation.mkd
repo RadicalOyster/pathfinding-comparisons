@@ -7,9 +7,11 @@ First was a straight line:
 ![](https://github.com/RadicalOyster/pathfinding-comparisons/blob/main/documentation/images/test1.png)
 
 Second a spaced out checkerboard pattern:
+
 ![](https://github.com/RadicalOyster/pathfinding-comparisons/blob/main/documentation/images/test2.png)
 
 The third a diagonal divide with a single gap:
+
 ![](https://github.com/RadicalOyster/pathfinding-comparisons/blob/main/documentation/images/test3.png)
 
 The tests were ran 5 times and the results averaged.
