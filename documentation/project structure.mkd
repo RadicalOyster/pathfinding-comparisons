@@ -1,0 +1,40 @@
+## Project Structure
+
+Excluding testing packages, the application is divided into five packages.
+
+* Domain contains the Node class, which the algorithms and data structures are
+dependent on.
+* Algorithms contains all three pathfinding algorithms.
+* Data structures contains the MazeNodeList and NodeHeap data structures, which
+implement list and heap functionality for use with the algorithms.
+* Ui contains the graphical user interface.
+* Main contains only the main class, which immediately launches the gui.
+
+## Space and time complexities
+
+### Data structures
+
+#### MazeNodeList
+MazeNodeList contains a single array of nodes and a size variable.
+
+add() simply adds a node to the next empty spot in the array, which has a
+time complexity of O(1). If the lists' current capcity is exceeded, elements
+need to be copied  over to a new array, which has a time complexity of O(N), but
+this operation does not need to be performed very often. The space complexity of
+this operation is O(n).
+
+#### NodeHeap
+NodeHeap also contains a single array of nodes and a size variable.
+
+* add() is on average O(1) and when the array needs to be expanded, O(N).
+
+* pollLast(), peekLast() and size() have a time complexity of O(1) as they only peform
+simple operations such as assigning variables and reading data from an array.
+
+* contains() has a time complexity of O(n) as it iterates through the array until
+it finds the value it needs. This could be improved with a more sensible search
+method.
+
+* insert() has a worst case time complexity of O(logn), as the loop iterates over the tree
+one level at a time and the amount of nodes on each level is roughly half of the nodes on the
+next. On average, this operation turns out to only have a time complexity of O(1), however.

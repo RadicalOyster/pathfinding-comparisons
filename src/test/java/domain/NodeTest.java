@@ -1,4 +1,4 @@
-package pathfinding.pathfinding_comparisons;
+package domain;
 
 import domain.Node;
 import org.junit.After;

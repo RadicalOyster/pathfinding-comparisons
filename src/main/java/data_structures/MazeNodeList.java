@@ -1,6 +1,5 @@
 package data_structures;
 
-
 import domain.Node;
 
 /**

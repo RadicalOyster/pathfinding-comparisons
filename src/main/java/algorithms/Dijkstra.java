@@ -81,6 +81,7 @@ public class Dijkstra {
             }
 
             if (this.maze[newNode.getY()][newNode.getX()] == Integer.MAX_VALUE) {
+                this.visited[newNode.getY()][newNode.getX()] = true;
                 continue;
             }
 

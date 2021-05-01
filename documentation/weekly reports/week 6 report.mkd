@@ -1,0 +1,1 @@
+This week I created a graphical user interface for the program, allowing the user to visualize the path found by the algorithms and to interact with the application. I also began working on the documentation for implementation and testing.

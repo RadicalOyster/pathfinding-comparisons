@@ -15,15 +15,14 @@ public class PerformanceTest {
 
     public void RunTests() {
         int[][] largeMazeStraightLine = new int[6000][6000];
-        Node start = new Node(0, 150);
+        Node start = new Node(0, 151);
         Node destination = new Node(3999, 150);
 
         for (int i = 0; i < 6000; i++) {
             for (int j = 0; j < 6000; j++) {
                 if (i >= 150 && i < 152) {
                     largeMazeStraightLine[i][j] = 1;
-                }
-                else {
+                } else {
                     largeMazeStraightLine[i][j] = W;
                 }
             }
@@ -31,15 +30,18 @@ public class PerformanceTest {
 
         System.out.println("Running tests with large maze and straight line: ");
         TestResult result = this.Test(largeMazeStraightLine, start, destination);
+        
         this.testResults[0] = result;
         int[][] largeCheckerBoardMaze = new int[6000][6000];
 
         for (int i = 0; i < 6000; i++) {
             for (int j = 0; j < 6000; j++) {
-                if ((i + j) % 2 == 0) {
-                    largeCheckerBoardMaze[i][j] = 1;
+                if (i % 2 == 0) {
+                    if (j % 2 == 0) {
+                        largeCheckerBoardMaze[i][j] = W;
+                    }
                 } else {
-                    largeCheckerBoardMaze[i][j] = W;
+                    largeCheckerBoardMaze[i][j] = 1;
                 }
             }
         }

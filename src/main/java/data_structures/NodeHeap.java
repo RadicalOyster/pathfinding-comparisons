@@ -1,6 +1,5 @@
 package data_structures;
 
-import java.util.Arrays;
 import domain.Node;
 
 /**
@@ -25,7 +24,6 @@ public class NodeHeap {
      * @param node Node to insert into heap.
      */
     public void insert(Node node) {
-        int i;
         if (size == 0) {
             heap[0] = node;
             size++;
@@ -44,6 +42,7 @@ public class NodeHeap {
             swap(currentSize, currentSize/2);
             currentSize = currentSize/2;
         }
+        
         
     }
 

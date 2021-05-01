@@ -1,0 +1,30 @@
+## Performance Tests
+
+The algorithms were tested on three 6000x6000 mazes with simple patterns.
+
+First was a straight line:
+
+Second a spaced out checkerboard pattern:
+
+The third a diagonal divide with a single gap:
+
+The tests were ran 5 times and the results averaged.
+
+### Results
+
+* Test 1:
+ * Dijkstra: 61 ms
+ * A*: 26 ms
+ * IDA*: 84 ms
+
+* Test 2:
+ * Dijkstra: 81 ms
+ * A*: 27 ms
+ * IDA*: 23 ms
+
+* Test 3:
+ * Dijkstra: 26 ms
+ * A*: 88 ms
+ * IDA*: 23 ms
+
+### Conclusions
