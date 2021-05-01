@@ -3,7 +3,7 @@ package algorithms;
 import data_structures.NodeHeap;
 import data_structures.MazeNodeList;
 import domain.Node;
-import domain.Timer;
+import performance_test.Timer;
 
 /**
  * <h1>IDA* Algorithm</h1>

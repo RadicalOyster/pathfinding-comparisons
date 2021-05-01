@@ -1,4 +1,4 @@
-package domain;
+package performance_test;
 
 public class Timer {
     long startTime;

@@ -1,4 +1,4 @@
-package domain;
+package performance_test;
 
 public class TestResult {
     long dijkstraAverage;

@@ -18,7 +18,7 @@ import algorithms.A_star;
 import algorithms.Dijkstra;
 import algorithms.IDA_star;
 import domain.Node;
-import domain.TestResult;
+import performance_test.TestResult;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.BoxLayout;

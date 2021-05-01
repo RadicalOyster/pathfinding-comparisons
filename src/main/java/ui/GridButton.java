@@ -2,6 +2,9 @@ package ui;
 
 import javax.swing.JButton;
 
+/**
+ * A custom JButton that stores its position.
+ */
 public class GridButton extends JButton {
     private int row;
     private int col;

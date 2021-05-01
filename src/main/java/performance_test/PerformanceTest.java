@@ -4,7 +4,6 @@ import algorithms.A_star;
 import algorithms.Dijkstra;
 import algorithms.IDA_star;
 import domain.Node;
-import domain.TestResult;
 
 /**
  * A class for testing performance on large mazes
