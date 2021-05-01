@@ -1,6 +1,7 @@
 ## Project Structure
 
 Excluding testing packages, the application is divided into five packages.
+![](https://github.com/RadicalOyster/pathfinding-comparisons/blob/main/documentation/images/package%20diagram.png)
 
 * Domain contains the Node class, which the algorithms and data structures are
 dependent on.
