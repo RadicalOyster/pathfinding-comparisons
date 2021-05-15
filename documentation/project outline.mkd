@@ -23,5 +23,12 @@ and Dijkstra's algorithm, which will both only visit any given node once.
 * With A*, the goal is to reach a time complexity of O(E) where E = the number of edges
 * The space complexity should be no worse than Dijkstra's. The goal is a space complexity of O(V)
 
-* The time complexity of IDA* is difficult to evaluate, but it should prove to be about as efficient as A*
+* The time complexity of IDA* depends on the heuristic used. 
 * The space complexity for IDA* is O(bd) where b is the maximum branching factor (number of child nodes each node can have) and d is the maximum depth of the search tree.
+
+# Sources
+
+https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
+https://en.wikipedia.org/wiki/A*_search_algorithm
+https://en.wikipedia.org/wiki/Iterative_deepening_A*
+https://www.hackerearth.com/practice/algorithms/graphs/shortest-path-algorithms/tutorial/

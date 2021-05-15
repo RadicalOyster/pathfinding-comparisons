@@ -14,23 +14,26 @@ The third a diagonal divide with a single gap:
 
 ![](https://github.com/RadicalOyster/pathfinding-comparisons/blob/main/documentation/images/test3.png)
 
-The tests were ran 5 times and the results averaged.
+The tests were ran 5 times and the results averaged. As each round of testing runs the test 5 times, the tests have been run 25 times in total.
+These tests can be run from the graphical user interface with the "Test Performance" button.
 
 ### Results
 
 * Test 1:
- * Dijkstra: 61 ms
- * A*: 26 ms
- * IDA*: 84 ms
+ * Dijkstra: 77.4 ms
+ * A*: 27.2 ms
+ * IDA*: 55.4 ms
 
 * Test 2:
- * Dijkstra: 81 ms
- * A*: 27 ms
- * IDA*: 23 ms
+ * Dijkstra: 31.4 ms
+ * A*: 87.4 ms
+ * IDA*: 22.6 ms
 
 * Test 3:
- * Dijkstra: 26 ms
- * A*: 88 ms
- * IDA*: 23 ms
+ * Dijkstra: 30.2 ms
+ * A*: 25.2 ms
+ * IDA*: 66.6 ms
 
 ### Conclusions
+
+Although for tests 1 and 3, A* performed better than Dijkstra as expected, Dijkstra is noticably faster for test 2. Theoretically, this should not be the case, but this result has been consistent across many rounds of testing. The likely culprit here is the heuristic and further research should be done to determine and fix the cause of this issue. Curiously, IDA*, which uses the same heuristic, also performs worse than Dijkstra on one of these tests, but not the same test as A*. This is particularly strange, as if the heuristic is what is at fault here then I would expect both algorithms to falter on the same test. In general though, both the algorithms that utilize a heruistic seem to be performing better on average than Dijkstra which is to be expected.

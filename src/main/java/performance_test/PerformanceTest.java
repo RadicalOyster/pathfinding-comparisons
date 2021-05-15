@@ -14,34 +14,34 @@ public class PerformanceTest {
     public TestResult[] testResults = new TestResult[3];
 
     public void RunTests() {
-        int[][] largeMazeStraightLine = new int[6000][6000];
+        int[][] testMaze= new int[6000][6000];
         Node start = new Node(0, 151);
         Node destination = new Node(3999, 150);
 
         for (int i = 0; i < 6000; i++) {
             for (int j = 0; j < 6000; j++) {
                 if (i >= 150 && i < 152) {
-                    largeMazeStraightLine[i][j] = 1;
+                    testMaze[i][j] = 1;
                 } else {
-                    largeMazeStraightLine[i][j] = W;
+                    testMaze[i][j] = W;
                 }
             }
         }
 
         System.out.println("Running tests with large maze and straight line: ");
-        TestResult result = this.Test(largeMazeStraightLine, start, destination);
+        TestResult result = this.Test(testMaze, start, destination);
         
         this.testResults[0] = result;
-        int[][] largeCheckerBoardMaze = new int[6000][6000];
+        testMaze = new int[6000][6000];
 
         for (int i = 0; i < 6000; i++) {
             for (int j = 0; j < 6000; j++) {
                 if (i % 2 == 0) {
                     if (j % 2 == 0) {
-                        largeCheckerBoardMaze[i][j] = W;
+                        testMaze[i][j] = W;
                     }
                 } else {
-                    largeCheckerBoardMaze[i][j] = 1;
+                    testMaze[i][j] = 1;
                 }
             }
         }
@@ -50,22 +50,22 @@ public class PerformanceTest {
 
         System.out.println("");
         System.out.println("Running tests with large checkerboard maze: ");
-        result = this.Test(largeCheckerBoardMaze, start, destination);
+        result = this.Test(testMaze, start, destination);
         this.testResults[1] = result;
 
-        int[][] largeDiagonalDivide = new int[6000][6000];
+        testMaze = new int[6000][6000];
 
         for (int i = 0; i < 6000; i++) {
             for (int j = 0; j < 6000; j++) {
                 if (i == j) {
-                    largeDiagonalDivide[i][j] = W;
+                    testMaze[i][j] = W;
                 } else {
-                    largeDiagonalDivide[i][j] = 1;
+                    testMaze[i][j] = 1;
                 }
             }
         }
 
-        largeDiagonalDivide[2999][2999] = 1;
+        testMaze[2999][2999] = 1;
 
         start = new Node(0, 1);
         destination = new Node(5999, 5998);
@@ -73,7 +73,7 @@ public class PerformanceTest {
         System.out.println("");
         System.out.println("Running tests with large maze with a diagonal divide down the middle and a single gap: ");
 
-        result = this.Test(largeDiagonalDivide, start, destination);
+        result = this.Test(testMaze, start, destination);
         this.testResults[2] = result;
     }
 

@@ -39,3 +39,23 @@ method.
 * insert() has a worst case time complexity of O(logn), as the loop iterates over the tree
 one level at a time and the amount of nodes on each level is roughly half of the nodes on the
 next. On average, this operation turns out to only have a time complexity of O(1), however.
+
+#### Algorithms
+
+#### Dijkstra
+
+With Dijkstra's algorithm, the target time complexity of O(V + E logV) has been reached. Likewise the required amount of memory is directly proportional to the number of nodes, giving us a space complexity of O(N) which was our target.
+
+### A*
+
+A* is virtually identical to Dijkstra's with the exception of a heuristic being added to the node cost. In this case, as we don't allow diagonal movement, the heuristic used is the manhattan distance between the current node and the destination node. The heuristic itself has a time complexity of O(1) and guides the algorithm to choose better nodes to explore, which if the heuristic is sensible, should make the algorithm more time efficient. In practice based on testing, however, A* ended up being slower than Dijsktra's in some cases. This leads me to believe that the heuristic here is not optimal, as theoretically A* should not be slower than Dijkstra's if the heuristic has been chosen correctly. 
+
+### IDA*
+
+Based on my testing, IDA* appears to be performing slightly slower than A* on average, but is roughly on par. This is about as expected. It does, however, take up less space while running as it only keeps the currently explored path in memory at any given time, unlike Dijkstra and A*, which both keep a growing heap of nodes in memory at all times.
+
+## Improvements
+
+* There is quite a bit of a repeat code, especially between A* and Dijkstra, which could be cut down
+ * This could be solved with inheritance
+* As I alluded to earlier, different heuristics should be explored to see if the performance of A* and IDA* could be improved
