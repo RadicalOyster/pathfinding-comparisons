@@ -18,7 +18,7 @@ This project aims to implement and compare the efficiency various pathfinding al
 
 # Release
 
-* [Final release]()
+* [Final release](https://github.com/RadicalOyster/pathfinding-comparisons/releases/tag/final)
 
 # The Project
 
